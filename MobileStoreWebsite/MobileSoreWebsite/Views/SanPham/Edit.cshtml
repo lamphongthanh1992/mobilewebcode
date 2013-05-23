@@ -1,0 +1,75 @@
+﻿@model MobileStoreBLL.SanPham
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>SanPham</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.maSP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.maSP)
+            @Html.ValidationMessageFor(model => model.maSP)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tenSP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tenSP)
+            @Html.ValidationMessageFor(model => model.tenSP)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.hangSX)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.hangSX)
+            @Html.ValidationMessageFor(model => model.hangSX)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.giaSP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.giaSP)
+            @Html.ValidationMessageFor(model => model.giaSP)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.thongtinSP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.thongtinSP)
+            @Html.ValidationMessageFor(model => model.thongtinSP)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.tinhtrangSP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.tinhtrangSP)
+            @Html.ValidationMessageFor(model => model.tinhtrangSP)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
