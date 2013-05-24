@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="vi"> <!--<![endif]-->
+
+<head>
+
+  <meta charset="utf-8" />
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Website for Mobile Phone</title>
+  
+  <!-- Included CSS Files (Compressed) -->
+
+  <style>
+    /* Prevents slides from flashing */
+    #slides {
+      display:none;
+	  width: 1000px;
+	  margin: 0 auto;
+    }
+	#slides .slidesjs-navigation {
+      margin-top:3px;
+    }
+
+    #slides .slidesjs-previous {
+      margin-right: 5px;
+      float: left;
+    }
+
+    #slides .slidesjs-next {
+      margin-right: 5px;
+      float: left;
+    }
+
+    .slidesjs-pagination {
+      margin: 6px 0 0;
+      float: right;
+      list-style: none;
+    }
+
+    .slidesjs-pagination li {
+      float: left;
+      margin: 0 1px;
+    }
+
+    .slidesjs-pagination li a {
+      display: block;
+      width: 13px;
+      height: 0;
+      padding-top: 13px;
+      background-image: url(image/pagination.png);
+      background-position: 0 0;
+      float: left;
+      overflow: hidden;
+    }
+
+    .slidesjs-pagination li a.active,
+    .slidesjs-pagination li a:hover.active {
+      background-position: 0 -13px
+    }
+
+    .slidesjs-pagination li a:hover {
+      background-position: 0 -26px
+    }
+
+    #slides a:link,
+    #slides a:visited {
+      color: #333
+    }
+
+    #slides a:hover,
+    #slides a:active {
+      color: #9e2020
+    }
+
+    .navbar {
+      overflow: hidden
+    }
+  </style>
+@Styles.Render("~/Content/css")
+@*@Scripts.Render("~/bundles/js")*@
+@Scripts.Render("~/bundles/jquery")
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <!-- Google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic' rel='stylesheet' type='text/css' />
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<!-- ######################## Main Menu ######################## -->
+ 
+	<nav>
+
+     <div class="twelve columns header_nav">
+     <div class="row">
+      
+        <ul id="menu-header" class="nav-bar horizontal">
+        
+         <li class="active"><a>Trang chủ</a></li>
+      
+           <li class="has-flyout">
+           <a>@Html.ActionLink("Các hãng điện thoại","index","SanPham")</a><a href="#" class="flyout-toggle"></a>
+            <ul class="flyout"><!-- Flyout Menu -->
+              <li class="has-flyout"><a href="Nokia.html">Nokia</a></li>
+              <li class="has-flyout"><a href="SamSung.html">SamSung</a></li>
+              <li class="has-flyout"><a href="Apple.html">Apple</a></li>
+             
+            </ul> 
+          </li><!-- END Flyout Menu -->
+      
+          <li class=""><a href="Search.html">Tìm kiếm</a></li>
+		  <li class=""><a href="Contact.html">Giới thiệu - Liên Hệ</a></li>
+		   <li class=""><a href="Register.html">Đăng nhập - Đăng kí</a></li>
+			
+      
+        </ul>
+        
+      </div>  
+      </div>
+      
+	</nav>
+	<!-- ######################## Header ######################## -->
+     @RenderBody()
+       @* <header>
+              <h1 class="heading_supersize">TNT STORE</h1>
+              <h2 class="welcome_text">Website dành cho các thiết bị di động </h2>    
+        </header>*@
+    <!-- ######################## Slider ######################## -->
+	@*<div id="slides">
+		<img src=@Url.Content("~/Images/iphone.jpg")>
+		<img src=@Url.Content("~/Images/SamSung.jpg")>
+		<img src=@Url.Content("~/Images/Nokia.png")>
+		<img src=@Url.Content("~/Images/ipad.png")>
+		<img src=@Url.Content("~/Images/macbook.jpg")>
+		      <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
+      <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
+	</div>*@
+	<!-- ######################## Footer ######################## -->
+	<div class ="fo">
+		<h3 class = "welcome_text">Cám ơn sự ghé thăm của quý khách</h3>
+		<h3 id = "design">Design by Lâm Phong Thạnh - 1012407</h3>
+	</div>
+    <script type="text/javascript" src="~/Scripts/foundation.min.js"></script>
+	<script type="text/javascript" src="~/Scripts/app.js"></script>
+	<script src="~/Scripts/jquery.slides.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		  $("#slides").slidesjs({
+			width: 1000,
+			height: 528,
+			navigation: false,
+			play: {
+			  active: true,
+			  auto: true,
+			  interval: 4000,
+			  swap: true
+			}
+		  });
+		});
+	 </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

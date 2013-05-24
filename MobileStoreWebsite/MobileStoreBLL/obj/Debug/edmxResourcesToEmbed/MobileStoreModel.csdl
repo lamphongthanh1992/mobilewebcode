@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MOBILESTOREModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MOBILESTOREDBEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="KhachHangs" EntityType="MOBILESTOREModel.KhachHang" />
+    <EntitySet Name="PhanQuyens" EntityType="MOBILESTOREModel.PhanQuyen" />
+    <EntitySet Name="SanPhams" EntityType="MOBILESTOREModel.SanPham" />
+    <EntitySet Name="BinhLuans" EntityType="MOBILESTOREModel.BinhLuan" />
+    <AssociationSet Name="FK_BinhLuan_SanPham" Association="MOBILESTOREModel.FK_BinhLuan_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="BinhLuan" EntitySet="BinhLuans" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="MOBILESTOREModel.sysdiagram" />
+  </EntityContainer>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="maKH" />
+    </Key>
+    <Property Name="maKH" Type="Int32" Nullable="false" />
+    <Property Name="tenKH" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="tuoiKH" Type="Int32" />
+    <Property Name="diachiKH" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="dienthoaiKH" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="mailKH" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PhanQuyen">
+    <Key>
+      <PropertyRef Name="maPQ" />
+    </Key>
+    <Property Name="maPQ" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="pass" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="phanquyen1" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="maSP" />
+    </Key>
+    <Property Name="maSP" Type="Int32" Nullable="false" />
+    <Property Name="tenSP" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="hangSX" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="giaSP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="thongtinSP" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="tinhtrangSP" Type="Int32" />
+    <NavigationProperty Name="BinhLuans" Relationship="MOBILESTOREModel.FK_BinhLuan_SanPham" FromRole="SanPham" ToRole="BinhLuan" />
+  </EntityType>
+  <EntityType Name="BinhLuan">
+    <Key>
+      <PropertyRef Name="maBL" />
+    </Key>
+    <Property Type="Int32" Name="maBL" Nullable="false" />
+    <Property Type="String" Name="noidungBL" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="maSP" />
+    <NavigationProperty Name="SanPham" Relationship="MOBILESTOREModel.FK_BinhLuan_SanPham" FromRole="BinhLuan" ToRole="SanPham" />
+  </EntityType>
+  <Association Name="FK_BinhLuan_SanPham">
+    <End Type="MOBILESTOREModel.SanPham" Role="SanPham" Multiplicity="0..1" />
+    <End Type="MOBILESTOREModel.BinhLuan" Role="BinhLuan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="maSP" />
+      </Principal>
+      <Dependent Role="BinhLuan">
+        <PropertyRef Name="maSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+</Schema>
